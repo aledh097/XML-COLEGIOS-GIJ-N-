@@ -5,6 +5,7 @@ print "------------------------------------------"
 print "A= LISTA EL NOMBRE DE TODOS LOS COLEGIOS "
 print "B= CUENTA EL NUMERO DE COLEGIOS QUE CONTIENE EL FICHERO"
 print "C= DEVOLVER URL DEL COLEGIO SEGÚN UN NÚMERO DE TELÉFONO"
+print "D= DEVOLVER NOMBRE DEL COLEGIO SEGÚN SU DIRECCION"
 print "EXIT= PARA SALIR"
 
 print "------------------------------------------"
@@ -30,13 +31,24 @@ while tecla!="EXIT":
 		telefonos=raiz.findall("directorio/telefono")
 		url=raiz.findall("directorio/url")
 		for t,u in zip(telefonos,url):
-			if buscador == t.text:
+			if buscador==t.text:
 				print u.text
+			
+	if tecla=="D":
+		buscador=raw_input("Dime la dirección: ")
+		colegios=etree.parse(u'/home/usuario/XML-COLEGIOS-GIJ-N-/colegios.xml')
+		raiz=colegios.getroot()
+		direcciones=raiz.findall(u"directorio/direccion")
+		url=raiz.findall(u"directorio/nombre")
+		for d,n in zip(direcciones,url):
+			if buscador==d.text:
+				print n.text
 			
 	print "------------------------------------------"
 	print "A= LISTA EL NOMBRE DE TODOS LOS COLEGIOS "
 	print "B= CUENTA EL NUMERO DE COLEGIOS QUE CONTIENE EL FICHERO"
 	print "C= DEVOLVER URL DEL COLEGIO SEGÚN UN NÚMERO DE TELÉFONO"
+	print "D= DEVOLVER NOMBRE DEL COLEGIO SEGÚN SU DIRECCION"
 	print "EXIT= PARA SALIR"
 
 	print "------------------------------------------"
