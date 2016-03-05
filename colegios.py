@@ -6,6 +6,7 @@ print "A= LISTA EL NOMBRE DE TODOS LOS COLEGIOS "
 print "B= CUENTA EL NUMERO DE COLEGIOS QUE CONTIENE EL FICHERO"
 print "C= DEVOLVER URL DEL COLEGIO SEGÚN UN NÚMERO DE TELÉFONO"
 print "D= DEVOLVER NOMBRE DEL COLEGIO SEGÚN SU DIRECCION"
+print "E= IMPRIME EL HORARIO DEL COLEGIO SEGÚN SU COORDENADA"
 print "EXIT= PARA SALIR"
 
 print "------------------------------------------"
@@ -45,12 +46,23 @@ while tecla!="EXIT":
 		for d,n in zip(direcciones,nombre):
 			if buscador==d:
 				print n.text
+				
+	if tecla=="E":
+		buscador=raw_input("Dime la coordenada: ")
+		colegios=etree.parse('colegios.xml')
+		raiz=colegios.getroot()
+		coordenada=doc.xpath("/directorios/directorio/localizacion/text()")
+		horario=raiz.findall("directorio/horario")
+		for c,h in zip(coordenada,horario):
+			if buscador==c:
+				print h.text
 			
 	print "------------------------------------------"
 	print "A= LISTA EL NOMBRE DE TODOS LOS COLEGIOS "
 	print "B= CUENTA EL NUMERO DE COLEGIOS QUE CONTIENE EL FICHERO"
 	print "C= DEVOLVER URL DEL COLEGIO SEGÚN UN NÚMERO DE TELÉFONO"
 	print "D= DEVOLVER NOMBRE DEL COLEGIO SEGÚN SU DIRECCION"
+	print "E= IMPRIME EL HORARIO DEL COLEGIO SEGÚN SU COORDENADA"
 	print "EXIT= PARA SALIR"
 
 	print "------------------------------------------"
