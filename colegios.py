@@ -10,7 +10,9 @@ print "EXIT= PARA SALIR"
 
 print "------------------------------------------"
 from lxml import etree
-doc=etree.parse('/home/usuario/XML-COLEGIOS-GIJ-N-/colegios.xml')
+import lxml.html, lxml.etree
+
+doc=etree.parse('colegios.xml')
 raiz=doc.getroot()
 tecla=str.upper(raw_input("Opcion: "))
 
@@ -26,7 +28,7 @@ while tecla!="EXIT":
 	
 	if tecla=="C":
 		buscador=raw_input("Dime el número de teléfono: ")
-		colegios=etree.parse('/home/usuario/XML-COLEGIOS-GIJ-N-/colegios.xml')
+		colegios=etree.parse('colegios.xml')
 		raiz=colegios.getroot()
 		telefonos=raiz.findall("directorio/telefono")
 		url=raiz.findall("directorio/url")
@@ -36,12 +38,12 @@ while tecla!="EXIT":
 			
 	if tecla=="D":
 		buscador=raw_input("Dime la dirección: ")
-		colegios=etree.parse(u'/home/usuario/XML-COLEGIOS-GIJ-N-/colegios.xml')
+		colegios=etree.parse('colegios.xml')
 		raiz=colegios.getroot()
-		direcciones=raiz.findall(u"directorio/direccion")
-		url=raiz.findall(u"directorio/nombre")
-		for d,n in zip(direcciones,url):
-			if buscador==d.text:
+		direcciones=doc.xpath("/directorios/directorio/direccion[2]/text()")
+		nombre=raiz.findall("directorio/nombre")
+		for d,n in zip(direcciones,nombre):
+			if buscador==d:
 				print n.text
 			
 	print "------------------------------------------"
