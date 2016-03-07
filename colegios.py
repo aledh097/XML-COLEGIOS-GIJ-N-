@@ -69,7 +69,7 @@ while tecla!="EXIT":
 		descripcion=doc.xpath("/directorios/directorio/descripcion/text()")
 		nombre=doc.xpath("/directorios/directorio/nombre/text()")
 		imagen=doc.xpath("/directorios/directorio/foto/text()")
-		f=open("html.txt","w")
+		f=open("index.html","w")
 		for d,n,i in zip(descripcion,nombre,imagen):
 			if d.find(buscador)>=0:
 				a="<h1>"+n+"</h1>"
